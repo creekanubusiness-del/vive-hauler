@@ -1,165 +1,255 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vive Hauler — Vehicle Showcase</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: #0b1120;
-      color: #e5e7eb;
-      line-height: 1.6;
-    }
-    a { color: inherit; text-decoration: none; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vive Hauler — Heritage Machines</title>
 
-    header {
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 20px;
-    }
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-    }
-    header p {
-      color: #94a3b8;
-      max-width: 600px;
-      margin: 0 auto 30px;
-    }
-    .btn {
-      display: inline-block;
-      padding: 12px 28px;
-      border-radius: 999px;
-      background: #38bdf8;
-      color: #020617;
-      font-weight: 600;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(56,189,248,0.4);
-    }
+<style>
+/* RESET + BASE */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  background: #000;
+  color: #ddd;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
 
-    section {
-      padding: 80px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-    section p {
-      color: #94a3b8;
-      max-width: 700px;
-    }
+/* NAVBAR */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(8px);
+  z-index: 999;
+}
+nav h1 {
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+nav ul {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+}
+nav ul li a {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  transition: opacity .2s ease;
+}
+nav ul li a:hover {
+  opacity: 1;
+}
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: 40px;
-    }
-    .vehicle-card {
-      background: #020617;
-      border-radius: 20px;
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
-      padding: 20px;
-      text-align: center;
-    }
-    .vehicle-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
-    .vehicle-card img {
-      width: 100%;
-      border-radius: 12px;
-      margin-bottom: 15px;
-    }
-    .vehicle-card h3 {
-      margin: 0;
-      margin-bottom: 10px;
-    }
-    .vehicle-card p {
-      font-size: 0.95rem;
-      color: #94a3b8;
-    }
+/* HERO SECTION */
+header {
+  min-height: 100vh;
+  width: 100%;
+  padding: 80px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: url('https://images.unsplash.com/photo-1518552782240-272b3f56f2ed?auto=format&fit=crop&w=1900&q=80') center/cover;
+  position: relative;
+}
+header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+header .inner {
+  position: relative;
+  z-index: 2;
+}
+header h2 {
+  font-size: 3.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+}
+header p {
+  margin-top: 10px;
+  font-size: 1.1rem;
+  opacity: .75;
+}
+header .cta-btn {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 12px 34px;
+  font-weight: bold;
+  border: 2px solid #fff;
+  border-radius: 40px;
+  transition: .3s ease;
+}
+header .cta-btn:hover {
+  background: #fff;
+  color: #000;
+}
 
-    footer {
-      padding: 40px 20px;
-      text-align: center;
-      color: #64748b;
-      font-size: 0.9rem;
-    }
-  </style>
+/* SECTION WRAPPER */
+section {
+  max-width: 1250px;
+  margin: auto;
+  padding: 80px 30px;
+}
+
+/* SECTION HEADERS */
+section h2 {
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+section p {
+  opacity: 0.7;
+  max-width: 780px;
+  line-height: 1.6;
+}
+
+/* GALLERY */
+.gallery {
+  margin-top: 50px;
+  display: grid;
+  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+}
+.vehicle-card {
+  position: relative;
+  background: #111;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+.vehicle-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+.vehicle-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  filter: brightness(0.85);
+  transition: filter .3s ease;
+}
+.vehicle-card:hover img {
+  filter: brightness(1);
+}
+.vehicle-card .info {
+  padding: 18px;
+}
+.vehicle-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+.vehicle-card p {
+  font-size: .88rem;
+  opacity: .65;
+}
+
+/* FOOTER */
+footer {
+  padding: 60px 20px;
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: .6;
+  border-top: 1px solid #222;
+}
+</style>
+
 </head>
 <body>
 
-  <!-- Hero -->
-  <header>
-    <div>
-      <h1>Vive Hauler</h1>
-      <p>Comfort meets performance</p>
-      <a class="btn" href="#gallery">View Gallery</a>
-    </div>
-  </header>
+<!-- NAV -->
+<nav>
+  <h1>VIVE HAULER</h1>
+  <ul>
+    <li><a href="#gallery">Vehicles</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-  <!-- Gallery -->
-  <section id="gallery">
-  <h2>Vehicle Gallery</h2>
+<!-- HERO -->
+<header>
+  <div class="inner">
+    <h2>Comfort Meets Power</h2>
+    <p>Heritage machines reimagined for the modern road</p>
+    <a class="cta-btn" href="#gallery">Explore the Lineup</a>
+  </div>
+</header>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <h2>Showcase</h2>
+  <p>A curated fleet of iconic Land Cruisers and timeless Mercedes-Benz classics.</p>
+
   <div class="gallery">
     <div class="vehicle-card">
-      <img src="images/3d06ff2e767205150158cfd33a118aca.jpg" alt="Land Cruiser J60">
-      <h3>Land Cruiser J60</h3>
-      <p>Classic reliability and off-road performance.</p>
+      <img src="images/3d06ff2e767205150158cfd33a118aca.jpg">
+      <div class="info">
+        <h3>Land Cruiser J60</h3>
+        <p>Vintage muscle for real journeys.</p>
+      </div>
     </div>
+
     <div class="vehicle-card">
-      <img src="images/64e3a2fe4a70d2ea32b2f8d8b2c2a880.jpg" alt="Land Cruiser J70">
-      <h3>Land Cruiser J70</h3>
-      <p>Legendary durability and rugged design.</p>
+      <img src="images/64e3a2fe4a70d2ea32b2f8d8b2c2a880.jpg">
+      <div class="info">
+        <h3>Land Cruiser J70</h3>
+        <p>Purpose-built for rugged terrain.</p>
+      </div>
     </div>
+
     <div class="vehicle-card">
-      <img src="images/e9b63bd321f7115115f81af2bb6be0e0.jpg" alt="Land Cruiser J80">
-      <h3>Land Cruiser J80</h3>
-      <p>Modern comfort meets strong off-road ability.</p>
+      <img src="images/e9b63bd321f7115115f81af2bb6be0e0.jpg">
+      <div class="info">
+        <h3>Land Cruiser J80</h3>
+        <p>Where comfort meets adventure.</p>
+      </div>
     </div>
+
     <div class="vehicle-card">
-      <img src="images/6ae2f437d9cbd8e5da4d7e7047f819ef.jpg" alt="Benz W Series">
-      <h3>Benz W Series</h3>
-      <p>Old models, timeless luxury and engineering.</p>
+      <img src="images/6ae2f437d9cbd8e5da4d7e7047f819ef.jpg">
+      <div class="info">
+        <h3>Benz W Series</h3>
+        <p>Handcrafted luxury from a golden era.</p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ABOUT -->
+<section id="about">
+  <h2>About Us</h2>
+  <p>
+    Vive Hauler celebrates legendary machines that shaped automotive history.
+    Built for endurance, engineered with soul, and admired for a timeless design philosophy —
+    these vehicles remain icons on today’s roads and trails.
+  </p>
+</section>
 
-  <!-- About / Vision -->
-  <section id="about">
-    <h2>About Vive Hauler</h2>
-    <p>
-      Vive Hauler is a showcase of vehicles combining performance, comfort, and classic appeal. From Land Cruisers to vintage Benz models, each vehicle highlights style, functionality, and passion for automotive excellence.
-    </p>
-  </section>
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Collaborations, inquiries & enthusiasts welcome.</p>
+  <p><strong>anushvive@gmail.com</strong><br>
+     <strong>creekanubusiness@gmail.com</strong>
+  </p>
+</section>
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>You can reach us directly via email:</p>
-    <p>
-      <strong>anushvive@gmail.com</strong><br />
-      <strong>creekanubusiness@gmail.com</strong>
-    </p>
-  </section>
-
-  <footer>
-    © 2026 Vive — Vehicle Showcase by Anush Anirudhan
-  </footer>
+<footer>
+  © 2026 Vive Hauler — Curated by Anush Anirudhan
+</footer>
 
 </body>
 </html>
