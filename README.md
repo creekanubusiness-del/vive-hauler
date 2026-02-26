@@ -4,8 +4,8 @@
 Vive Hauler is a modern vehicle showcase web application focused on clean UI/UX design principles. The project demonstrates structured layout, responsive design, and interactive user interface elements.
 
 "" Tech Stack
-- HTML5
-- CSS3
+- HTML
+- CSS
 - JavaScript
 
 "" Features
@@ -26,3 +26,4 @@ Active development – UI improvements and interaction enhancements in progress.
 - Dynamic data integration
 - Backend connection
 - Authentication system
+- ITS A CURRENTLY UNDER DEVELOPING WEB.....
